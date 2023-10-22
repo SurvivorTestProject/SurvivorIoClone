@@ -1,39 +1,25 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
+using UnityEditor.Animations;
 using UnityEngine;
+
+[Serializable]
+public struct DropChanceItem
+{
+	public GameObject expDropPF;
+	public float expDropChance;
+}
 
 public class Enemy : MonoBehaviour
 {
-	[Serializable]
-	public struct DropChanceItem
-	{
-		public GameObject expDropPF;
-
-		public float expDropChance;
-	}
-
-	[SerializeField]
-	private float health = 2f;
-
-	[SerializeField]
-	private GameObject expDropPF;
-
-	[SerializeField]
-	private float expDropChance;
-
-	[SerializeField]
-	private float moveSpeed = 3f;
-
-	[SerializeField]
-	private AnimationClip deathAnimation;
-
+	[SerializeField] private float health = 2f;
+	[SerializeField] private float moveSpeed = 3f;
+	[SerializeField] private AnimationClip deathAnimation;
 	private EnemySpawnManager spawnManager;
-
 	private Transform player;
-
-	private float deathAnimationDelay = 0.5f;
-
+	private readonly float deathAnimationDelay = 0.5f;
 	public List<DropChanceItem> dropsList;
 
 	private void Awake()
@@ -50,10 +36,10 @@ public class Enemy : MonoBehaviour
 	{
 		if (player != null)
 		{
-			Vector2 vector = player.position - base.transform.position;
+			Vector2 vector = player.position - transform.position;
 			vector.Normalize();
 			MoveSprite(vector);
-			base.transform.Translate(vector * moveSpeed * Time.deltaTime);
+			transform.Translate(vector * (moveSpeed * Time.deltaTime));
 		}
 	}
 
@@ -87,7 +73,7 @@ public class Enemy : MonoBehaviour
 		StartCoroutine(KillEnemyEnumerator());
 	}
 
-	public void TrySpawnExp()
+	private void TrySpawnExp()
 	{
 		float num = UnityEngine.Random.Range(1, 101);
 		float num2 = 0f;
@@ -97,7 +83,7 @@ public class Enemy : MonoBehaviour
 			num2 += drops.expDropChance;
 			if (num < num2 && num > num3)
 			{
-				UnityEngine.Object.Instantiate(drops.expDropPF, base.transform.position, Quaternion.identity);
+				UnityEngine.Object.Instantiate(drops.expDropPF, transform.position, Quaternion.identity);
 				break;
 			}
 			num3 = num2;
@@ -106,8 +92,8 @@ public class Enemy : MonoBehaviour
 
 	private void PlayDeathAnimation()
 	{
-		Animator component = GetComponent<Animator>();
-		component.Play(deathAnimation.name);
+		Animator animator = GetComponent<Animator>();
+		animator.Play(deathAnimation.name);
 	}
 
 	private IEnumerator KillEnemyEnumerator()
@@ -116,7 +102,7 @@ public class Enemy : MonoBehaviour
 		GetComponent<Collider2D>().enabled = false;
 		moveSpeed = 0f;
 		yield return new WaitForSeconds(deathAnimationDelay);
-		spawnManager.EnemyKilled(base.gameObject);
+		spawnManager.EnemyKilled(gameObject);
 		TrySpawnExp();
 	}
 }

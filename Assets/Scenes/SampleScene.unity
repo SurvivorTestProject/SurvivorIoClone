@@ -338,23 +338,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &23
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 39}
-  - component: {fileID: 1877102514}
-  m_Layer: 0
-  m_Name: PlayerLevelManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &27
 Transform:
   m_ObjectHideFlags: 0
@@ -447,7 +430,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 39}
   - {fileID: 32}
   - {fileID: 36}
   - {fileID: 35}
@@ -530,21 +512,6 @@ Transform:
   - {fileID: 64}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
---- !u!4 &39
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 23}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 33}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &40
 Camera:
   m_ObjectHideFlags: 0
@@ -1232,8 +1199,6 @@ MonoBehaviour:
   _joystick: {fileID: 217856473}
   _moveSpeed: 5
   spawnManager: {fileID: 93}
-  projectilePrefab: {fileID: 1378393255825967, guid: ee04a0a087ba5e2499e93fa317ed67ae, type: 3}
-  shootingCooldown: 1
 --- !u!114 &82
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1250,9 +1215,7 @@ MonoBehaviour:
   currentLevel: 1
   nextLevelExpMultiplier: 1.3
   expToNextLevel: 30
-  skillButtonSpawner: {fileID: 66}
-  skillButtonPF: {fileID: 1554258701251222458, guid: 6b45b63e3f45ae34794cc22074672708, type: 3}
-  skillSpawnManager: {fileID: 12}
+  skillUpgradeManager: {fileID: 90}
   levelTextUI: {fileID: 2018113533}
   healthBar: {fileID: 94}
 --- !u!114 &83
@@ -1457,11 +1420,15 @@ MonoBehaviour:
     containerPF: {fileID: 1281982431747662, guid: 8dfe435c7691c1147af3c1e5e0181533, type: 3}
     skillUpgrades:
     - {fileID: 11400000, guid: d86a71ebc08d5ba4386c5003b72de84b, type: 2}
+    - {fileID: 11400000, guid: c8103273e161b8949b018cbec44a629f, type: 2}
+    - {fileID: 11400000, guid: 91d9670e9a22d5f4aa6dca4a11a1308c, type: 2}
+    - {fileID: 11400000, guid: cdc11ff10773a614eadcfa398dcbb444, type: 2}
+    - {fileID: 11400000, guid: 1d860f1fd4904664dbb6dcfd41e70495, type: 2}
     currentSkillIndex: 0
   appliedDamageUpgrades: []
   appliedUtilItems: []
-  skillButtonSpanwer: {fileID: 66}
-  currentSkillIndex: 0
+  skillButtonPF: {fileID: 1554258701251222458, guid: 6b45b63e3f45ae34794cc22074672708, type: 3}
+  skillButtonSpawner: {fileID: 66}
 --- !u!114 &91
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2023,27 +1990,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
---- !u!114 &1877102514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 23}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c35554162b0c1fe49a95cf7b7b540c71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentExp: 0
-  currentLevel: 1
-  nextLevelExpMultiplier: 0
-  expToNextLevel: 50
-  skillButtonSpawner: {fileID: 0}
-  skillButtonPF: {fileID: 0}
-  skillSpawnManager: {fileID: 0}
-  levelTextUI: {fileID: 0}
-  healthBar: {fileID: 0}
 --- !u!1 &2018113531
 GameObject:
   m_ObjectHideFlags: 0

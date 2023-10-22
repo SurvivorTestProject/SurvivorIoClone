@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Zombie_Walking
+  m_Name: Worker_Walking
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,13 +21,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1521597977, guid: 254a7f7ce2385f3469cffa354454c21c, type: 3}
+      value: {fileID: -111758024, guid: 254a7f7ce2385f3469cffa354454c21c, type: 3}
     - time: 0.083333336
-      value: {fileID: -1012824230, guid: 254a7f7ce2385f3469cffa354454c21c, type: 3}
+      value: {fileID: -1537171977, guid: 254a7f7ce2385f3469cffa354454c21c, type: 3}
     - time: 0.16666667
-      value: {fileID: 961241970, guid: 254a7f7ce2385f3469cffa354454c21c, type: 3}
+      value: {fileID: -1759854097, guid: 254a7f7ce2385f3469cffa354454c21c, type: 3}
     - time: 0.25
-      value: {fileID: 1297249643, guid: 254a7f7ce2385f3469cffa354454c21c, type: 3}
+      value: {fileID: -1536007719, guid: 254a7f7ce2385f3469cffa354454c21c, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -50,10 +50,10 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -1521597977, guid: 254a7f7ce2385f3469cffa354454c21c, type: 3}
-    - {fileID: -1012824230, guid: 254a7f7ce2385f3469cffa354454c21c, type: 3}
-    - {fileID: 961241970, guid: 254a7f7ce2385f3469cffa354454c21c, type: 3}
-    - {fileID: 1297249643, guid: 254a7f7ce2385f3469cffa354454c21c, type: 3}
+    - {fileID: -111758024, guid: 254a7f7ce2385f3469cffa354454c21c, type: 3}
+    - {fileID: -1537171977, guid: 254a7f7ce2385f3469cffa354454c21c, type: 3}
+    - {fileID: -1759854097, guid: 254a7f7ce2385f3469cffa354454c21c, type: 3}
+    - {fileID: -1536007719, guid: 254a7f7ce2385f3469cffa354454c21c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

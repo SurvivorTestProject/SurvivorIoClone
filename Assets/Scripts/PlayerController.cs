@@ -1,3 +1,4 @@
+using Managers;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -14,15 +15,8 @@ public class PlayerController : MonoBehaviour
 	[SerializeField]
 	private EnemySpawnManager spawnManager;
 
-	[SerializeField]
-	private GameObject projectilePrefab;
-
-	[SerializeField]
-	private float shootingCooldown = 1f;
-
 	private Transform closestEnemy;
 
-	private float lastShotTime;
 
 	private Transform playerSprite;
 
@@ -34,18 +28,6 @@ public class PlayerController : MonoBehaviour
 	private void FixedUpdate()
 	{
 		MovePlayer();
-	}
-
-	private void Update()
-	{
-		if (CanShoot())
-		{
-			FindClosestEnemy();
-			if (closestEnemy != null)
-			{
-				Shoot();
-			}
-		}
 	}
 
 	private void MovePlayer()
@@ -84,17 +66,5 @@ public class PlayerController : MonoBehaviour
 				}
 			}
 		}
-	}
-
-	private bool CanShoot()
-	{
-		return Time.time - lastShotTime >= shootingCooldown;
-	}
-
-	private void Shoot()
-	{
-		GameObject gameObject = Object.Instantiate(projectilePrefab, base.transform.position, Quaternion.identity);
-		gameObject.GetComponent<Projectile>().Launch(closestEnemy);
-		lastShotTime = Time.time;
 	}
 }

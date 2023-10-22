@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 114695090285773079}
   - component: {fileID: 95304776276150254}
   m_Layer: 7
-  m_Name: Snake
+  m_Name: Worker
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 1187414869
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1751540490, guid: 254a7f7ce2385f3469cffa354454c21c, type: 3}
+  m_Sprite: {fileID: -1537171977, guid: 254a7f7ce2385f3469cffa354454c21c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 2
   moveSpeed: 1
-  deathAnimation: {fileID: 7400000, guid: a8e00f0cd549a804daee864997198930, type: 2}
+  deathAnimation: {fileID: 7400000, guid: ef8eeeb9965a68841b79fad1150c34ed, type: 2}
   dropsList:
   - expDropPF: {fileID: 1989592987023769, guid: 0ca779703af892144a797a38dab199d8, type: 3}
     expDropChance: 70
@@ -190,7 +190,7 @@ Animator:
   m_GameObject: {fileID: 1104004763842397}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bdad6053a2d7f6f49821fd3186429e01, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4803ae17cb054d04c8686aeacb91d98e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

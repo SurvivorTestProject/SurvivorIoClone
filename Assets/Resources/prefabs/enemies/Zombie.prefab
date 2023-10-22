@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1104004763842397
+--- !u!1 &1740542470530648
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,26 +8,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4099041308333828}
-  - component: {fileID: 212502293812419874}
-  - component: {fileID: 50709400194184074}
-  - component: {fileID: 61545995425705423}
-  - component: {fileID: 114695090285773079}
-  - component: {fileID: 95304776276150254}
+  - component: {fileID: 4011253419193922}
+  - component: {fileID: 212162089688376670}
+  - component: {fileID: 50982925819441381}
+  - component: {fileID: 61523091436405988}
+  - component: {fileID: 114803323695243997}
+  - component: {fileID: 95505865971347597}
   m_Layer: 7
-  m_Name: Snake
+  m_Name: Zombie
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4099041308333828
+--- !u!4 &4011253419193922
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1104004763842397}
+  m_GameObject: {fileID: 1740542470530648}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.2939, y: -2.1533, z: 0}
@@ -36,13 +36,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
---- !u!212 &212502293812419874
+--- !u!212 &212162089688376670
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1104004763842397}
+  m_GameObject: {fileID: 1740542470530648}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 1187414869
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1751540490, guid: 254a7f7ce2385f3469cffa354454c21c, type: 3}
+  m_Sprite: {fileID: -1012824230, guid: 254a7f7ce2385f3469cffa354454c21c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -88,14 +88,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &50709400194184074
+--- !u!50 &50982925819441381
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1104004763842397}
+  m_GameObject: {fileID: 1740542470530648}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -115,13 +115,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &61545995425705423
+--- !u!61 &61523091436405988
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1104004763842397}
+  m_GameObject: {fileID: 1740542470530648}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -160,13 +160,13 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.43083155, y: 0.6731955}
   m_EdgeRadius: 0
---- !u!114 &114695090285773079
+--- !u!114 &114803323695243997
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1104004763842397}
+  m_GameObject: {fileID: 1740542470530648}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4876daa63c20bb43c4ca710fdda60b75, type: 3}
@@ -174,23 +174,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 2
   moveSpeed: 1
-  deathAnimation: {fileID: 7400000, guid: a8e00f0cd549a804daee864997198930, type: 2}
+  deathAnimation: {fileID: 7400000, guid: fdf467015592a964cae7844a4bcb2b91, type: 2}
   dropsList:
   - expDropPF: {fileID: 1989592987023769, guid: 0ca779703af892144a797a38dab199d8, type: 3}
     expDropChance: 70
   - expDropPF: {fileID: 1899038990394739, guid: 6b175e4b26ac28642ad1ab74cfe1b0fc, type: 3}
     expDropChance: 20
---- !u!95 &95304776276150254
+--- !u!95 &95505865971347597
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1104004763842397}
+  m_GameObject: {fileID: 1740542470530648}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bdad6053a2d7f6f49821fd3186429e01, type: 2}
+  m_Controller: {fileID: 9100000, guid: feb55459e7a647d41a5b85c89e6252fc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
