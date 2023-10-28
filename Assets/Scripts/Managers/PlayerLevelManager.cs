@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,8 +14,8 @@ namespace Managers
 		public float nextLevelExpMultiplier;
 
 		public float expToNextLevel = 50f;
+		public event Action LeveledUp;
 		
-
 		[SerializeField]
 		private SkillUpgradeManager skillUpgradeManager;
 
@@ -35,7 +36,7 @@ namespace Managers
 				currentLevel++;
 				currentExp -= expToNextLevel;
 				expToNextLevel *= nextLevelExpMultiplier;
-				skillUpgradeManager.TryGetUpgrade();
+				LeveledUp?.Invoke();
 			}
 			healthBar.transform.localScale = new Vector3(currentExp / expToNextLevel % 1f, 1f, 1f);
 			levelTextUI.text = currentLevel.ToString();

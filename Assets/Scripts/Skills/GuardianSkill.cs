@@ -1,122 +1,131 @@
-using System;
 using System.Collections.Generic;
+using Enums;
 using UnityEngine;
 
-public class GuardianSkill : BaseSkill<GuardianSkillSO>
+namespace Skills
 {
-	[SerializeField]
-	private GameObject ballPrefab;
-	private int numberOfBalls;
-	private float rotationSpeed;
-	private float distanceFromPlayer;
-	private float rotationSelfSpeed;
-	private float knockBack;
-	private Transform guardianSprite;
-	private List<GameObject> blades = new List<GameObject>();
-	
-	public override void Awake()
+	public class GuardianSkill : BaseSkill
 	{
-		base.Awake();
-		guardianSprite = ballPrefab.transform.GetChild(0);
-	}
-
-	private void Start()
-	{
-		if (ballPrefab != null)
+		[SerializeField]
+		private GameObject bladePrefab;
+		private float rotationSpeed;
+		private float distanceFromPlayer;
+		private float rotationSelfSpeed;
+		private float knockBack;
+		private Transform guardianSprite;
+		private List<GameObject> blades = new List<GameObject>();
+		public override void Awake()
 		{
-			CreateBalls();
+			base.Awake();
+			setStats();
+			guardianSprite = bladePrefab.transform.GetChild(0);
 		}
-	}
 
-	private void Update()
-	{
-		if (skillSpawner != null)
+		private void Start()
 		{
-			RotateBalls();
-			TranslateBalls();
+			if (bladePrefab != null)
+			{
+				CreateBalls();
+			}
 		}
-		if ((bool)guardianSprite)
-		{
-			guardianSprite.Rotate(Vector3.forward * (rotationSelfSpeed * Time.deltaTime));
-		}
-	}
 
-	public override void setScriptableObjectProperties(GuardianSkillSO receivedGuardianSkillSo)
-	{
-		damage = receivedGuardianSkillSo.damage;
-		numberOfBalls = receivedGuardianSkillSo.numberOfBalls;
-		rotationSpeed = receivedGuardianSkillSo.rotationSpeed;
-		distanceFromPlayer = receivedGuardianSkillSo.distanceFromPlayer;
-		rotationSelfSpeed = receivedGuardianSkillSo.rotationSelfSpeed;
-		knockBack = receivedGuardianSkillSo.knockBack;
-		if (receivedGuardianSkillSo.numberOfBalls > 2)
+		public override void setStats()
 		{
-			InstantiateNewBall();
-		}
-	}
+			
+			base.setStats();
+			rotationSpeed = stats.GetStatFloat(StatType.rotationSpeed);
+			console.log("Set stats" + rotationSpeed);
+			damage = stats.GetStatFloat(StatType.damage);
+			int receivedNumberOfProjectiles = (int)stats.GetStatFloat(StatType.numberOfProjectiles);
+			for(int i = 0;i<receivedNumberOfProjectiles ; i++)
+			{
+				IncrementBlades();
+			}
 
-	private void InstantiateNewBall()
-	{
-		if (ballPrefab != null && skillSpawner != null)
-		{
-			GameObject gameObject = UnityEngine.Object.Instantiate(ballPrefab, skillSpawner.transform.position, Quaternion.identity);
-			gameObject.transform.parent = base.transform;
-			blades.Add(gameObject);
-			GuardianSkillInstance component = gameObject.GetComponent<GuardianSkillInstance>();
-			component.setKnockback(knockBack);
-			component.setDamage(damage);
-			component.setRotationSelfSpeed(rotationSelfSpeed);
+			numberOfProjectiles = receivedNumberOfProjectiles;
+			distanceFromPlayer = stats.GetStatFloat(StatType.distanceFromPlayer);
+			rotationSelfSpeed = stats.GetStatFloat(StatType.rotationChildSpeed);
+			knockBack = stats.GetStatFloat(StatType.knockBack);
 		}
-	}
-
-	private void CreateBalls()
-	{
-		if (ballPrefab != null)
+		
+		private void Update()
 		{
-			for (int i = 0; i < numberOfBalls; i++)
+			if (skillSpawner != null)
+			{
+				RotateBlades();
+				TranslateBalls();
+			}
+			if ((bool)guardianSprite)
+			{
+				guardianSprite.Rotate(Vector3.forward * (rotationSelfSpeed * Time.deltaTime));
+			}
+		}
+
+		public override void setScriptableObjectProperties(SkillSO receivedGuardianSkillSo)
+		{
+			damage = receivedGuardianSkillSo.damage;
+			numberOfProjectiles = receivedGuardianSkillSo.numberOfProjectiles;
+			distanceFromPlayer = receivedGuardianSkillSo.distanceFromPlayer;
+			rotationSelfSpeed = receivedGuardianSkillSo.rotationChildSpeed;
+			knockBack = receivedGuardianSkillSo.knockBack;
+			if (receivedGuardianSkillSo.numberOfProjectiles > 2)
 			{
 				InstantiateNewBall();
 			}
 		}
-	}
 
-	private void TranslateBalls()
-	{
-		for (int i = 0; i < numberOfBalls; i++)
+		private void InstantiateNewBall()
 		{
-			float z = (float)i * (360f / (float)numberOfBalls);
-			Vector3 localPosition = Quaternion.Euler(0f, 0f, z) * Vector3.right * distanceFromPlayer;
-			blades[i].transform.localPosition = localPosition;
-		}
-	}
-
-	private void RotateAroundPoint(Transform point, Transform center, float angle)
-	{
-		angle *= MathF.PI / 180f;
-		var pointPosition = point.position;
-		var centerPosition = center.position;
-		float x = Mathf.Cos(angle) * (pointPosition.x - centerPosition.x) - Mathf.Sin(angle) * (pointPosition.y - centerPosition.y) + centerPosition.x;
-		float y = Mathf.Sin(angle) * (pointPosition.x - centerPosition.x) + Mathf.Cos(angle) * (pointPosition.y - centerPosition.y) + centerPosition.y;
-		point.transform.position = new Vector3(x, y, 0f);
-	}
-
-	private void RotateBalls()
-	{
-		base.transform.Rotate(Vector3.forward * (rotationSpeed * Time.deltaTime));
-	}
-
-	private void IncrementBlades()
-	{
-		numberOfBalls++;
-		for (int i = 0; i < numberOfBalls; i++)
-		{
-			if (i == numberOfBalls - 1)
+			if (bladePrefab != null && skillSpawner != null)
 			{
-				InstantiateNewBall();
+				GameObject bladeGO = Instantiate(bladePrefab, skillSpawner.transform.position, Quaternion.identity);
+				bladeGO.transform.parent = transform;
+				blades.Add(bladeGO);
+				GuardianSkillInstance component = bladeGO.GetComponent<GuardianSkillInstance>();
+				component.setKnockback(knockBack);
+				component.setDamage(damage);
+				component.setRotationSelfSpeed(rotationSelfSpeed);
 			}
-			else
+		}
+
+		private void CreateBalls()
+		{
+			if (bladePrefab != null)
 			{
-				blades[i].transform.position = skillSpawner.transform.position;
+				for (int i = 0; i < numberOfProjectiles; i++)
+				{
+					InstantiateNewBall();
+				}
+			}
+		}
+
+		private void TranslateBalls()
+		{
+			for (int i = 0; i < numberOfProjectiles; i++)
+			{
+				float z = i * (360f / numberOfProjectiles);
+				Vector3 localPosition = Quaternion.Euler(0f, 0f, z) * Vector3.right * distanceFromPlayer;
+				blades[i].transform.localPosition = localPosition;
+			}
+		}
+		private void RotateBlades()
+		{
+			transform.Rotate(Vector3.forward * (rotationSpeed * Time.deltaTime));
+		}
+
+		private void IncrementBlades()
+		{
+			numberOfProjectiles++;
+			for (int i = 0; i < numberOfProjectiles; i++)
+			{
+				if (i == numberOfProjectiles - 1)
+				{
+					InstantiateNewBall();
+				}
+				else
+				{
+					blades[i].transform.position = skillSpawner.transform.position;
+				}
 			}
 		}
 	}

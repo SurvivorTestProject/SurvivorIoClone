@@ -1,6 +1,9 @@
 using System.Collections.Generic;
+using Skills;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
+using StatsPackage;
 
 namespace Managers
 {
@@ -11,9 +14,18 @@ namespace Managers
 		public List<SkillUpgradeItem> appliedUtilItems;
 		[SerializeField] private GameObject skillButtonPF;
 		[SerializeField] private Transform skillButtonSpawner;
-	
+		[SerializeField] private StatsUpgrade statsUpgrade;
+		[SerializeField] private PlayerLevelManager playerLevelManager;
+
+		private void Awake()
+		{
+			playerLevelManager.LeveledUp += TryGetUpgrade;
+		}
+
 		public void TryGetUpgrade()
 		{
+			
+
 			SkillUpgradeItem currentUpgrade=this.GetRandomUpgrade();
 			if (currentUpgrade != null&&currentUpgrade.skillUpgrades.Count>currentUpgrade.currentSkillIndex)
 			{
@@ -56,7 +68,7 @@ namespace Managers
 			switch (currentSkillItem.skillName)
 			{
 				case SkillName.Guardian:
-					spawnedSkill.GetComponent<GuardianSkill>().setScriptableObjectProperties(currentSkillItem.skillUpgrades[currentSkillItem.currentSkillIndex] as GuardianSkillSO);
+					spawnedSkill.GetComponent<GuardianSkill>().setScriptableObjectProperties(currentSkillItem.skillUpgrades[currentSkillItem.currentSkillIndex]);
 					break;
 				default:
 					break;
@@ -71,20 +83,26 @@ namespace Managers
 		private void SpawnSkillButton(SkillUpgradeItem skillUpgradeItem)
 		{
 			SkillSO skillSo = skillUpgradeItem.skillUpgrades[skillUpgradeItem.currentSkillIndex];
-			if (skillSo!=null && skillSo.upgradeSprite)
+			if (skillSo!=null && skillSo.upgradeButtonSprite)
 			{
-				Sprite upgradeSprite = skillSo.upgradeSprite;
+				Sprite upgradeSprite = skillSo.upgradeButtonSprite;
 				GameObject skillButton = Instantiate(skillButtonPF, skillButtonSpawner.position,
 					Quaternion.identity);
 				skillButton.transform.parent = skillButtonSpawner;
 				skillButton.GetComponent<Image>().sprite = upgradeSprite;
-				skillButton.GetComponent<Button>().onClick.AddListener(delegate
+				skillButton.GetComponent<Button>().onClick.AddListener(()=>
 				{
-					this.InstantiateUpgradeGO(skillUpgradeItem);
+					InstantiateUpgradeGO(skillUpgradeItem);
+					statsUpgrade.DoUpgrade();
 					GameManager.Instance.SetGameState(GameState.PLAYING);
 					Destroy(skillButton);
 				});
 			}
+		}
+		
+		private void OnDestroy()
+		{
+			playerLevelManager.LeveledUp -= TryGetUpgrade;
 		}
 	}
 }

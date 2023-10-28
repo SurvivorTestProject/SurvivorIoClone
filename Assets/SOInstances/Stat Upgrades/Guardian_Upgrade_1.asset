@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f1851e5f0174ecebaeb6bd2594f9eee, type: 3}
+  m_Name: Guardian_Upgrade_1
+  m_EditorClassIdentifier: 
+  upgradeIcon: {fileID: 21300000, guid: ebc87d68e8a80ef4ab1b4bd0465387aa, type: 3}
+  upgradeName: 
+  description: 
+  unitsToUpgrade:
+  - {fileID: 11400000, guid: 4e494527971c0e54f958237987d6befc, type: 2}
+  upgradeToApply:
+  - statType: 4
+    value: 0.1
+    sprite: {fileID: 0}
+    stringValue: 
+  - statType: 7
+    value: 2
+    sprite: {fileID: 0}
+    stringValue: 
+  - statType: 11
+    value: -20
+    sprite: {fileID: 0}
+    stringValue: 
+  isPercentUpgrade: 0
+  isInstantiator: 0
+  instatiatorGO: {fileID: 1281982431747662, guid: 8dfe435c7691c1147af3c1e5e0181533, type: 3}

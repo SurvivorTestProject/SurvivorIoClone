@@ -433,6 +433,7 @@ Transform:
   - {fileID: 32}
   - {fileID: 36}
   - {fileID: 35}
+  - {fileID: 2093598768}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
 --- !u!4 &34
@@ -1369,9 +1370,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillSpawner: {fileID: 12}
+  stats: {fileID: 11400000, guid: 937175d77746425488b0ec230c03b9da, type: 2}
   projectilePrefab: {fileID: 1378393255825967, guid: ee04a0a087ba5e2499e93fa317ed67ae, type: 3}
   shootingCooldown: 1
-  spawnManager: {fileID: 93}
+  enemySpawnManager: {fileID: 93}
 --- !u!114 &89
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1419,16 +1421,18 @@ MonoBehaviour:
     skillType: 0
     containerPF: {fileID: 1281982431747662, guid: 8dfe435c7691c1147af3c1e5e0181533, type: 3}
     skillUpgrades:
-    - {fileID: 11400000, guid: d86a71ebc08d5ba4386c5003b72de84b, type: 2}
-    - {fileID: 11400000, guid: c8103273e161b8949b018cbec44a629f, type: 2}
-    - {fileID: 11400000, guid: 91d9670e9a22d5f4aa6dca4a11a1308c, type: 2}
-    - {fileID: 11400000, guid: cdc11ff10773a614eadcfa398dcbb444, type: 2}
-    - {fileID: 11400000, guid: 1d860f1fd4904664dbb6dcfd41e70495, type: 2}
+    - {fileID: 11400000, guid: cfa119616a02ab843b23e38a583a8ad4, type: 2}
+    - {fileID: 11400000, guid: ba8fd3430c2a73440a0a19702d44f320, type: 2}
+    - {fileID: 11400000, guid: 7fd57c4440975f7499c4b3dd1dacae1e, type: 2}
+    - {fileID: 11400000, guid: 569d586829aaca846bd68c1621a7607d, type: 2}
+    - {fileID: 11400000, guid: ac40d3961750f7947bf6a0bcb833f8e3, type: 2}
     currentSkillIndex: 0
   appliedDamageUpgrades: []
   appliedUtilItems: []
   skillButtonPF: {fileID: 1554258701251222458, guid: 6b45b63e3f45ae34794cc22074672708, type: 3}
   skillButtonSpawner: {fileID: 66}
+  statsUpgrade: {fileID: 11400000, guid: e63e11bba50edc4468b0008ffd1db70e, type: 2}
+  playerLevelManager: {fileID: 82}
 --- !u!114 &91
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1477,6 +1481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab:
   - {fileID: 1740542470530648, guid: 43316561e7d8e8c45b56de2552d13bfb, type: 3}
+  - {fileID: 1104004763842397, guid: 8f0b0ce70a8c79f45bc91f686afb79d7, type: 3}
   - {fileID: 1104004763842397, guid: a4c6ae8f0e5f95b47be3c08f7d30f833, type: 3}
   playerTransform: {fileID: 27}
   spawnRadius: 12
@@ -1699,6 +1704,37 @@ ScaleConstraint:
   m_Active: 1
   m_IsLocked: 1
   m_Sources: []
+--- !u!1 &54279351
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 54279352}
+  m_Layer: 0
+  m_Name: MoltovContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &54279352
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54279351}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.016578458, y: -0.24130446, z: -0.025908893}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &217856470 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
@@ -2124,6 +2160,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018113531}
   m_CullTransparentMesh: 1
+--- !u!1 &2093598767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2093598768}
+  - component: {fileID: 2093598769}
+  m_Layer: 0
+  m_Name: StatsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2093598768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093598767}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 33}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2093598769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093598767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf36e175a474ee46af3d1140fcbe05e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statsList:
+  - {fileID: 11400000, guid: 4e494527971c0e54f958237987d6befc, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2132,3 +2214,4 @@ SceneRoots:
   - {fileID: 27}
   - {fileID: 29}
   - {fileID: 33}
+  - {fileID: 54279352}

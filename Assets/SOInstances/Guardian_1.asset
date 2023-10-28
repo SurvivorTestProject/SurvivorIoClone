@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4dc227d1720d474fd3e2dcccab89f8, type: 3}
+  m_Name: Guardian_1
+  m_EditorClassIdentifier: 
+  name: Guardian
+  description: 
+  attackSpeed: 0
+  range: 0
+  damage: 0.5
+  skillCooldown: 0
+  flightSpeed: 0
+  numberOfProjectiles: 2
+  projectileSize: 0
+  knockBack: 20
+  upgradeButtonSprite: {fileID: 21300000, guid: ebc87d68e8a80ef4ab1b4bd0465387aa, type: 3}
+  rotationSpeed: -140
+  distanceFromPlayer: 2
+  rotationChildSpeed: 200
+  childSprite: {fileID: 0}
+  parentSprite: {fileID: 0}
